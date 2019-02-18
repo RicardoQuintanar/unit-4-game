@@ -79,7 +79,7 @@ function updatePics(fromDivID, toDivID) {
         $(toDivID + " img:last-child").attr("src", charArray[i].name);
         $(toDivID + " img:last-child").attr("src", charArray[i].pic);
         $(toDivID + " img:last-child").attr("width", 150);
-        $(toDdivID + " img:last-child").addClass("img-thumbnail");
+        $(toDivID + " img:last-child").addClass("img-thumbnail");
 
     }
 }
