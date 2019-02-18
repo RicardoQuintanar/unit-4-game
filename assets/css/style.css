@@ -1,6 +1,6 @@
 body{
     background-color: black;
-    background: url("../images/dbzbackground1.jpg");
+    background: url("../images/shenlongbkg.gif");
     background-position: fixed;
     background-repeat: no-repeat;
     background-size: cover;
@@ -17,7 +17,12 @@ body{
  #card{
      text-align: center;
  }
-
+.bg-trans{
+    background: rgba(0, 0, 0, 0.3) !important;
+    width:100;
+    height:100vh;
+    margin: 0 auto;
+}
 footer {
     position: absolute;
     font-size: .5em;
