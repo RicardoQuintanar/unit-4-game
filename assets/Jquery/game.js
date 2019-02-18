@@ -87,17 +87,18 @@ function changeView() {
     $("#homescreen").empty();
     $("#battlescreen").show();
 }
-
+// 
 $(document).on("click", "img", function () {
     if (playerSelected && !defenderSelected && (this.id != player.name)) {
-        for (var c = 0; c < charArray.length; i++) {
+        console.log('this is happening')
+        for (var c = 0; c < charArray.length; c++) {
             if (charArray[c].name == (this).id) {
-                defender.charArray[c];
-                charArray.splice[c, 1];
+                defender = charArray[c];
+                charArray.splice(c, 1);
                 defenderSelected = true;
-                $("#msg").html("attack!")
+                $("#msg").html("attack!");
             }
-        };
+        }
         $("#defenderDiv").append(this); // appends the selected defender to the div 
         $("#defenderDiv").addClass("animated zoomInRight");
         $("#defenderDiv").append("<br>" + defender.name);
