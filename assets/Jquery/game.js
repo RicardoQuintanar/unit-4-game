@@ -87,6 +87,29 @@ function changeView() {
     $("#homescreen").empty();
     $("#battlescreen").show();
 }
+if (!playerSelected) {
+    for (var i = 0; i < charArray.length; i++) {
+        if (charArray[i].name == (this).id) {
+            player = charArray[i];
+            $("body").css({
+                "background-image": "url('./assets/images/battlescreenbkd.gif')"
+            });
+            setBaseAttack(player);
+            charArray.splice(i, 1)
+            playerSelected = true;
+            changeView();
+
+        }
+    }
+
+    
+    updatePics("#game", "#defendersLeftDiv");
+    $("#playerDiv").append(this); // appends the selected player to the div
+    $("#playerDiv").addClass("animated zoomIn");
+    $("#playerDiv").append(player.name);
+    $("#playerHealthDiv").append("HP: " + player.healthPoints);
+    $("#playerHealthDiv").addClass("animated zoomIn");
+};
 // 
 $(document).on("click", "img", function () {
     if (playerSelected && !defenderSelected && (this.id != player.name)) {
@@ -105,34 +128,13 @@ $(document).on("click", "img", function () {
         $("#defenderHealthDiv").append("HP: " + defender.healthPoints);
         $("#defenderHealthDiv").addClass("animated zoomInRight");
     }
-
-    if (!playerSelected) {
-        for (var i = 0; i < charArray.length; i++) {
-            if (charArray[i].name == (this).id) {
-                player = charArray[i];
-                $("body").css({
-                    "background-image": "url('./assets/images/battlescreenbkd.gif')"
-                });
-                setBaseAttack(player);
-                charArray.splice(i, 1)
-                playerSelected = true;
-                changeView();
-
-            }
-        }
-        updatePics("#game", "#defendersLeftDiv");
-        $("#playerDiv").append(this); // appends the selected player to the div
-        $("#playerDiv").addClass("animated zoomIn");
-        $("#playerDiv").append(player.name);
-        $("#playerHealthDiv").append("HP: " + player.healthPoints);
-        $("#playerHealthDiv").addClass("animated zoomIn");
-    }
+    });
     function setBaseAttack(Obj) {
         baseAttack = Obj.attackPower;
     }
     
     // Checks if character is alive
-    function isAlive(Obj) {
+    function isActive(Obj) {
         if (Obj.healthPoints > 0) {
             return true;
         }
@@ -146,6 +148,16 @@ $(document).on("click", "img", function () {
         else return false;
     }
 
+$(document).on("click", "#attackBtn", function(){
+    if(playerSelected && defenderSelected) {
+        if(isActive(player) && isActive(defender)) {
+            player.attack(defender);
+            defender.counterAttack(player);
+            $("playerHealthDiv").html("HP: " + player.healthPoints);
+            $("defenderHealthDiv").html("HP: " + defender.healthPoints);
+
+        }
+    }
 });
 
 

@@ -1,3 +1,7 @@
+*{
+    box-sizing: border-box;
+}
+
 body{
     background-color: black;
     background: url("../images/shenlongbkg.gif");
@@ -17,6 +21,11 @@ body{
  #card{
      text-align: center;
  }
+
+ #defenderDiv {
+     float:right;
+ }
+
 .bg-trans{
     background: rgba(0, 0, 0, 0.3) !important;
     width:100;
